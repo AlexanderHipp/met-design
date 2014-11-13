@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Alexanders Travels</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/cover.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
+
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+  </head>
+  <body>
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand"><a href="#">Alexanders Travels</a></h3>
+              <nav>
+                <ul class="nav masthead-nav">
+                  <li><a href="#past">Past</a></li>
+                  <li><a href="#present">Present</a></li>
+                  <li><a href="#future">Future</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <div class="inner">
+            <h1 class="cover-heading">Places I saw,<br />where I am now<br />and future plans.</h1>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="container" >
+      <div class="row">
+
+        <div class="col-md-3">
+          <div class="col-md-9 sidebar-offcanvas" id="sidebar" role="navigation">
+            <nav id="target_nav">
+              <ul class="list-group nav">
+                <li><a href="#past" class="list-group-item">Past</a></li>
+                <li><a href="#present" class="list-group-item">Present</a></li>
+                <li><a href="#future" class="list-group-item">Future</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <div class="col-md-9" id="scroll-able" data-spy="scroll" data-target="#target_nav">
+          <section class="row" id="past">
+            <div class="col-md-12"><img src="images/past.jpg" /></div>
+          </section>
+          <section class="row" id="present">
+            <div class="col-md-12"><img src="images/present.jpg" /></div>
+          </section>
+          <section class="row" id="future">
+            <div class="col-md-12"><img src="images/future.jpg" /></div>
+            <div class="col-md-12"><img src="images/future.jpg" /></div>
+            <div class="col-md-12"><img src="images/future.jpg" /></div>
+            <div class="col-md-12"><img src="images/future.jpg" /></div>
+            <div class="col-md-12"><img src="images/future.jpg" /></div>
+            <div class="col-md-12"><img src="images/future.jpg" /></div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    
+    <script type="text/javascript" src="js/jquery.sticky.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <script>
+      $(window).load(function(){
+        $("#sidebar").sticky({ topSpacing: 100, center:true, className:"hey" });
+      });
+    </script>
+  </body>
+</html>

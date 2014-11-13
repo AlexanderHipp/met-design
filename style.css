@@ -1,0 +1,27 @@
+html, body {background-color: #fff;}
+body {color: #111;text-shadow: none;font-family: 'Source Sans Pro', sans-serif;position: relative;}
+
+.container {padding-top: 60px;}
+.site-wrapper {background: url("http://p202929.mittwaldserver.info/alex/img/personal/background-header.jpg");background-size: cover;}
+h3.masthead-brand {font-weight: 700;}
+h3.masthead-brand a {color:#111;}
+h3.masthead-brand a:hover {text-decoration: none;}
+.cover-heading {font-weight: 100;font-size: 5em;color:#fff;}
+.masthead {position: absolute;}
+.masthead-nav > li > a {color:#111;font-size: 18px;}
+.masthead-nav > li:hover {border-bottom: 3px solid #fff;}
+.masthead-nav > li:hover > a {color:#fff;}
+
+.list-group {margin: 0px;padding: 0px;}
+.list-group li {list-style-type: none;text-align: left;height: 67px;margin-bottom: 3px;}
+.list-group li:hover {border-bottom: 3px solid #333;}
+.list-group li a {border: none;font-weight: 900;font-size: 45px;color: #111;padding: 0px;margin: 0px;}
+.list-group li:hover a {background-color: #fff;}
+.list-group li.active {color: red;}
+.list-group li.active a {color: red;}
+
+#sidebar.col-md-9,
+.hey {width: 200px!important;}
+.hey .col-md-9 {width: auto!important;}
+
+.container #scroll-able {height:1000px;overflow:scroll;}
