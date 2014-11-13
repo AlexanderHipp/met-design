@@ -1,5 +1,5 @@
 html, body {background-color: #fff;}
-body {color: #111;text-shadow: none;font-family: 'Source Sans Pro', sans-serif;position: relative;}
+body {color: #111;text-shadow: none;font-family: 'Source Sans Pro', sans-serif;position: relative;height: 100%;}
 
 .container {padding-top: 60px;}
 .site-wrapper {background: url("http://p202929.mittwaldserver.info/alex/img/personal/background-header.jpg");background-size: cover;}
