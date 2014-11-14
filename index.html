@@ -14,6 +14,7 @@
 
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/modernizr.custom.js"></script>
 
   </head>
   <body id="scroll-able" data-spy="scroll" data-target="#target_nav" >
@@ -51,27 +52,71 @@
             </nav>
           </div>
         </div>
-
-        <div class="col-md-9" id="content-right">
-          <section class="row" id="past">
-            <div class="col-md-12"><img src="images/1.jpg" /></div>
-
-            <div class="col-md-6"><img src="images/2.jpg" /></div>
-            <div class="col-md-6"><img src="images/2.jpg" /></div>
-            
-            <div class="col-md-4"><img src="images/3.jpg" /></div>
-            <div class="col-md-4"><img src="images/3.jpg" /></div>
-            <div class="col-md-4"><img src="images/3.jpg" /></div>
-            
-            <div class="col-md-6"><img src="images/8.jpg" /></div>
-            <div class="col-md-6">
-              <div class="col-md-12"><img src="images/7.jpg" /></div>
-              <div class="col-md-12"><img src="images/7.jpg" /></div>
+        <div class="col-md-9 grid cs-style-4" id="content-right">
+          <section id="past">
+            <div class="row">
+              <div class="col-md-12">
+                <figure>
+                  <div><img src="images/1.jpg" /></div>
+                  <figcaption>
+                    <h3>2001</h3>
+                    <span>Kroatien</span>
+                    <a href="http://dribbble.com/shots/1115632-Camera">Take a look</a>
+                  </figcaption>
+                </figure>
+              </div>
             </div>
-            
-            <div class="col-md-12"><img src="images/6.jpg" /></div>
-            <div class="col-md-6"><img src="images/past.jpg" /></div>
-            <div class="col-md-6"><img src="images/past.jpg" /></div>
+            <div class="row">
+              <div class="col-md-6">
+                <figure>
+                  <div><img src="images/2.jpg" /></div>
+                  <figcaption>
+                    <h3>2001</h3>
+                    <span>Kroatien</span>
+                    <a href="http://dribbble.com/shots/1115632-Camera">Take a look</a>
+                  </figcaption>
+                </figure>
+              </div>
+              <div class="col-md-6">
+                <h1 class="text-left">Headline </h1>
+                <p class="lead text-left">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, et dolore maga. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <h1 class="text-left">Headline </h1>
+                <p class="lead text-left">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, et dolore maga. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+              </div>
+              <div class="col-md-6">
+                <figure>
+                  <div><img src="images/2.jpg" /></div>
+                  <figcaption>
+                    <h3>2001</h3>
+                    <span>Kroatien</span>
+                    <a href="http://dribbble.com/shots/1115632-Camera">Take a look</a>
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4"><img src="images/3.jpg" /></div>
+              <div class="col-md-4"><img src="images/3.jpg" /></div>
+              <div class="col-md-4"><img src="images/3.jpg" /></div>
+            </div>
+            <div class="row">
+              <div class="col-md-6"><img src="images/8.jpg" /></div>
+              <div class="col-md-6">
+                <div class="col-md-12"><img src="images/7.jpg" /></div>
+                <div class="col-md-12"><img src="images/7.jpg" /></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12"><img src="images/6.jpg" /></div>
+            </div>
+            <div class="row">
+              <div class="col-md-6"><img src="images/past.jpg" /></div>
+              <div class="col-md-6"><img src="images/past.jpg" /></div>
+            </div>
           </section>
           <section class="row" id="present">
             <div class="col-md-12"><img src="images/5.jpg" /></div>
@@ -94,10 +139,11 @@
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    
+
     <script type="text/javascript" src="js/jquery.sticky.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/toucheffects.js"></script>
 
     <script>
       $(window).load(function(){
