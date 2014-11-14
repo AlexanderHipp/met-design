@@ -25,3 +25,10 @@ h3.masthead-brand a:hover {text-decoration: none;}
 .hey .col-md-9 {width: auto!important;}
 
 .container #scroll-able {height:1000px;overflow:scroll;}
+section {margin-bottom: 100px;}
+.block {position: absolute;width: 430px;}
+.block img {width: 100%;}
+
+#content-right [class*="span"] {padding: 0px;}
+
+

@@ -13,28 +13,21 @@
     <link href="style.css" rel="stylesheet">
 
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
-
-
-    
-    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
   </head>
-  <body id="scroll-able" data-spy="scroll" data-target="#target_nav">
+  <body id="scroll-able" data-spy="scroll" data-target="#target_nav" >
     <div class="site-wrapper">
-
       <div class="site-wrapper-inner">
-
         <div class="cover-container">
-
           <div class="masthead clearfix">
             <div class="inner">
               <h3 class="masthead-brand"><a href="#">Alexanders Travels</a></h3>
               <nav>
                 <ul class="nav masthead-nav">
-                  <li><a href="#past">Past</a></li>
-                  <li><a href="#present">Present</a></li>
-                  <li><a href="#future">Future</a></li>
+                  <li><a href="#past" title="Past">Past</a></li>
+                  <li><a href="#present" title="Present">Present</a></li>
+                  <li><a href="#future" title="Future">Future</a></li>
                 </ul>
               </nav>
             </div>
@@ -43,13 +36,10 @@
             <h1 class="cover-heading">Places I saw,<br />where I am now<br />and future plans.</h1>
           </div>
         </div>
-
       </div>
-
     </div>
     <div class="container" >
       <div class="row">
-
         <div class="col-md-3">
           <div class="col-md-9 sidebar-offcanvas" id="sidebar" role="navigation">
             <nav id="target_nav">
@@ -61,19 +51,30 @@
             </nav>
           </div>
         </div>
-        <div class="col-md-9" >
+
+        <div class="col-md-9" id="content-right">
           <section class="row" id="past">
-            <div class="col-md-12"><img src="images/past.jpg" /></div>
-            <div class="col-md-12"><img src="images/past.jpg" /></div>
-            <div class="col-md-12"><img src="images/past.jpg" /></div>
-            <div class="col-md-12"><img src="images/past.jpg" /></div>
-            <div class="col-md-12"><img src="images/past.jpg" /></div>
-            <div class="col-md-12"><img src="images/past.jpg" /></div>
-            <div class="col-md-12"><img src="images/past.jpg" /></div>
-            <div class="col-md-12"><img src="images/past.jpg" /></div>
+            <div class="col-md-12"><img src="images/1.jpg" /></div>
+
+            <div class="col-md-6"><img src="images/2.jpg" /></div>
+            <div class="col-md-6"><img src="images/2.jpg" /></div>
+            
+            <div class="col-md-4"><img src="images/3.jpg" /></div>
+            <div class="col-md-4"><img src="images/3.jpg" /></div>
+            <div class="col-md-4"><img src="images/3.jpg" /></div>
+            
+            <div class="col-md-6"><img src="images/8.jpg" /></div>
+            <div class="col-md-6">
+              <div class="col-md-12"><img src="images/7.jpg" /></div>
+              <div class="col-md-12"><img src="images/7.jpg" /></div>
+            </div>
+            
+            <div class="col-md-12"><img src="images/6.jpg" /></div>
+            <div class="col-md-6"><img src="images/past.jpg" /></div>
+            <div class="col-md-6"><img src="images/past.jpg" /></div>
           </section>
           <section class="row" id="present">
-            <div class="col-md-12"><img src="images/present.jpg" /></div>
+            <div class="col-md-12"><img src="images/5.jpg" /></div>
             <div class="col-md-12"><img src="images/present.jpg" /></div>
             <div class="col-md-12"><img src="images/present.jpg" /></div>
             <div class="col-md-12"><img src="images/present.jpg" /></div>
@@ -101,7 +102,10 @@
     <script>
       $(window).load(function(){
         $("#sidebar").sticky({ topSpacing: 100, center:true, className:"hey" });
+        $("section img").addClass("img-responsive");
+        $("#content-right > section > div").addClass("span");
       });
     </script>
+
   </body>
 </html>
