@@ -25,10 +25,31 @@
             <div class="inner">
               <h3 class="masthead-brand"><a href="#">Alexanders Travels</a></h3>
               <nav>
-                <ul class="nav masthead-nav">
-                  <li><a href="#past" title="Past">Past</a></li>
-                  <li><a href="#present" title="Present">Present</a></li>
-                  <li><a href="#future" title="Future">Future</a></li>
+                <ul class="nav masthead-nav nav-collapsable">
+                  <li><a href="#past" title="Past">Past</a>
+                    <ul>
+                      <li><a href="#newyork">New York</a></li>
+                      <li><a href="#corse">Corse</a></li>
+                      <li><a href="#hawaii">Hawaii</a></li>
+                      <li><a href="#boston">Boston</a></li>
+                      <li><a href="#southgermany">South Germany</a></li>
+                      <li><a href="#rome">Rome</a></li>
+                      <li><a href="#canaryislands">Canary Islands</a></li>
+                      <li><a href="#shanghaiandbeijing">Shanghai & Beijing</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#present" title="Present">Present</a>
+                    <ul>
+                      <li><a href="#london">London</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#future" title="Future">Future</a>
+                    <ul>
+                      <li><a href="#scandinavia">Scandinavia</a></li>
+                      <li><a href="#southamerica">South America</a></li>
+                      <li><a href="#australiaandnewzealand">Australia & New Zealand</a></li>
+                    </ul>
+                  </li>
                 </ul>
               </nav>
             </div>
@@ -45,16 +66,37 @@
           <div class="col-md-9 sidebar-offcanvas" id="sidebar" role="navigation">
             <nav id="target_nav">
               <ul class="list-group nav">
-                <li><a href="#past" class="list-group-item">Past</a></li>
-                <li><a href="#present" class="list-group-item">Present</a></li>
-                <li><a href="#future" class="list-group-item">Future</a></li>
+                <li id="sidemenu-past"><a href="#past" class="list-group-item">Past</a>
+                  <ul>
+                    <li><a href="#newyork">New York</a></li>
+                    <li><a href="#corse">Corse</a></li>
+                    <li><a href="#hawaii">Hawaii</a></li>
+                    <li><a href="#boston">Boston</a></li>
+                    <li><a href="#southgermany">South Germany</a></li>
+                    <li><a href="#rome">Rome</a></li>
+                    <li><a href="#canaryislands">Canary Islands</a></li>
+                    <li><a href="#shanghaiandbeijing">Shanghai & Beijing</a></li>
+                  </ul>
+                </li>
+                <li id="sidemenu-present"><a href="#present" class="list-group-item">Present</a>
+                  <ul>
+                    <li><a href="#london">London</a></li>
+                  </ul>
+                </li>
+                <li id="sidemenu-future"><a href="#future" class="list-group-item">Future</a>
+                  <ul>
+                    <li><a href="#scandinavia">Scandinavia</a></li>
+                    <li><a href="#southamerica">South America</a></li>
+                    <li><a href="#australiaandnewzealand">Australia & New Zealand</a></li>
+                  </ul>
+                </li>
               </ul>
             </nav>
           </div>
         </div>
         <div class="col-md-9 grid cs-style-4" id="content-right">
           <section id="past">
-            <div class="row">
+            <div class="row" id="newyork">
               <div class="col-md-12">
                 <figure>
                   <div><img src="images/1.jpg" /></div>
@@ -66,7 +108,7 @@
                 </figure>
               </div>
             </div>
-            <div class="row">
+            <div class="row" id="corse">
               <div class="col-md-6">
                 <figure>
                   <div><img src="images/2.jpg" /></div>
@@ -139,18 +181,20 @@
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-
     <script type="text/javascript" src="js/jquery.sticky.js"></script>
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/toucheffects.js"></script>
 
     <script>
+      // Sidebar fixed on the left side
       $(window).load(function(){
         $("#sidebar").sticky({ topSpacing: 100, center:true, className:"hey" });
         $("section img").addClass("img-responsive");
         $("#content-right > section > div").addClass("span");
       });
+
     </script>
 
   </body>
