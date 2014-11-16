@@ -12,9 +12,14 @@
     <link href="css/cover.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
 
+    <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/modernizr.custom.js"></script>
+
+
 
   </head>
   <body id="scroll-able" data-spy="scroll" data-target="#target_nav" >
@@ -98,26 +103,16 @@
           <section id="past">
             <div class="row" id="newyork">
               <div class="col-md-12">
-                <figure>
-                  <div><img src="images/1.jpg" /></div>
-                  <figcaption>
-                    <h3>2001</h3>
-                    <span>Kroatien</span>
-                    <a href="http://dribbble.com/shots/1115632-Camera">Take a look</a>
-                  </figcaption>
-                </figure>
+                <a href="images/1.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork" data-strip-options="side: 'top'">
+                  <img src="images/1.jpg" />
+                </a>
               </div>
             </div>
             <div class="row" id="corse">
               <div class="col-md-6">
-                <figure>
-                  <div><img src="images/2.jpg" /></div>
-                  <figcaption>
-                    <h3>2001</h3>
-                    <span>Kroatien</span>
-                    <a href="http://dribbble.com/shots/1115632-Camera">Take a look</a>
-                  </figcaption>
-                </figure>
+                <a href="images/2.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork">
+                  <img src="images/2.jpg" />
+                </a>
               </div>
               <div class="col-md-6">
                 <h1 class="text-left">Headline </h1>
@@ -130,14 +125,9 @@
                 <p class="lead text-left">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, et dolore maga. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
               </div>
               <div class="col-md-6">
-                <figure>
-                  <div><img src="images/2.jpg" /></div>
-                  <figcaption>
-                    <h3>2001</h3>
-                    <span>Kroatien</span>
-                    <a href="http://dribbble.com/shots/1115632-Camera">Take a look</a>
-                  </figcaption>
-                </figure>
+                  <a href="">
+                    <img src="images/2.jpg" />
+                  </a>
               </div>
             </div>
             <div class="row">
@@ -182,6 +172,10 @@
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script type="text/javascript" src="js/jquery.sticky.js"></script>
+
+    <!-- Strip Gallery -->
+    <script type="text/javascript" src="js/strip.pkgd.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/strip.css"/>
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>

@@ -47,11 +47,11 @@ section {margin-bottom: 100px;}
 
 #content-right [class*="span"] {padding: 0px;}
 
-.grid {padding: 20px 20px 100px 20px;max-width: 1300px;margin: 0 auto;list-style: none;text-align: center;}
+/*.grid {padding: 20px 20px 100px 20px;max-width: 1300px;margin: 0 auto;list-style: none;text-align: center;}
 .grid li {display: inline-block;width: 440px;margin: 0;padding: 20px;text-align: left;position: relative;}
-.grid figure {margin: 0;position: relative;}
-.grid figure img {max-width: 100%;display: block;position: relative;}
-.grid figcaption {position: absolute;top: 0;left: 0;padding: 20px;background: #111;color: #ed4e6e;}
+.grid a {margin: 0;position: relative;}
+.grid a img {max-width: 100%;display: block;position: relative;}
+.grid a {position: absolute;top: 0;left: 0;padding: 20px;background: #111;color: #ed4e6e;}
 .grid figcaption h3 {margin: 0;padding: 0;color: #fff;}
 .grid figcaption a {text-align: center;padding: 5px 10px;border-radius: 2px;display: inline-block;background: #ed4e6e;color: #fff;}
 .cs-style-4 div {-webkit-perspective: 1700px;-moz-perspective: 1700px;perspective: 1700px;-webkit-perspective-origin: 0 50%;-moz-perspective-origin: 0 50%;perspective-origin: 0 50%;}
@@ -67,6 +67,6 @@ section {margin-bottom: 100px;}
 .cs-style-4 .col-md-4 figcaption {width: 75%;}
 .no-touch .cs-style-4 figure:hover figcaption,
 .cs-style-4 figure.cs-hover figcaption {opacity: 1;-webkit-transform: rotateY(0deg);-moz-transform: rotateY(0deg);transform: rotateY(0deg);-webkit-transition: -webkit-transform 0.4s, opacity 0.1s;-moz-transition: -moz-transform 0.4s, opacity 0.1s;transition: transform 0.4s, opacity 0.1s;}
-.cs-style-4 figcaption a {position: absolute;bottom: 20px;right: 20px}
+.cs-style-4 figcaption a {position: absolute;bottom: 20px;right: 20px}*/
 
 h1 {margin-top: 0px;font-weight: 100;}
