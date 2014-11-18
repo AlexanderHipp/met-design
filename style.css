@@ -1,9 +1,15 @@
 html, body {background-color: #fff;}
 body {color: #111;text-shadow: none;font-family: 'Source Sans Pro', sans-serif;position: relative;height: 100%;}
 li {list-style-type: none;}
-.container .row {margin-bottom: 40px;}
 
-.container {padding-top: 60px;}
+.container {padding-top: 60px;overflow:hidden;}
+.container .row {margin-bottom: 40px;}
+.container .row.last {padding-bottom: 150px!important;margin-bottom: 150px!important;border-bottom: 10px solid #111;}
+
+
+
+
+
 .site-wrapper {background: url("http://p202929.mittwaldserver.info/alex/img/personal/background-header.jpg");background-size: cover;}
 h3.masthead-brand {font-weight: 700;}
 h3.masthead-brand a {color:#111;}
@@ -41,6 +47,9 @@ h3.masthead-brand a:hover {text-decoration: none;}
 #sidebar.col-md-9,
 .hey {width: 200px!important;}
 .hey .col-md-9 {width: auto!important;}
+.map-6 {height:250px;}
+.map-6 iframe {height:100%;width:100%;}
+
 
 .container #scroll-able {height:1000px;overflow:scroll;}
 section {margin-bottom: 100px;}
@@ -50,7 +59,7 @@ section {margin-bottom: 100px;}
 #content-right [class*="span"] {padding: 0px;}
 
 .grid {position: relative;clear: none;margin: 0;padding: 0em;max-width: 1000px;list-style: none;text-align: center;}
-.grid figure {position: relative;float: left;overflow: hidden;margin: 0px;min-width: inherit;max-width: none;max-height: none;width: auto;height: auto;background: #000;text-align: center;cursor: pointer;}
+.grid figure {position: relative;float: left;overflow: hidden;margin: 0px;min-width: inherit;max-width: none;max-height: none;width: 100%;height: auto;background: #000;text-align: center;cursor: pointer;}
 figure.effect-julia img {width: 100%;height: auto;}
 figure.effect-julia h2 {font-size: 5em;font-weight: 100;line-height:8em;}
 figure.effect-julia figcaption {text-align: center;}
