@@ -11,7 +11,7 @@ section img {display: block;max-width: 100%;height: auto;}
 
 
 
-.site-wrapper {background: url("images/places/top.jpg");background-size: cover;}
+.site-wrapper {background: url("images/top.jpg");background-size: cover;}
 h3.masthead-brand {font-weight: 700;}
 h3.masthead-brand a {color:#111;}
 h3.masthead-brand a:hover {text-decoration: none;}
