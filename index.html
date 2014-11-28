@@ -37,14 +37,19 @@
 
         $("#typed").typed({
             strings: ["Places I saw,\nwhere I am now\n and future plans.", "Maybe."],
-            typeSpeed: 40,
-            backDelay: 0,
+            typeSpeed: 150,
+            backDelay: 100,
             loop: false,
             // defaults to false for infinite loop
             loopCount: false,
             callback: function(){ foo(); },
             resetCallback: function() { newTyped(); }
         });
+
+        $(".reset").click(function(){
+            $("#typed").typed('reset');
+        });
+
     });
 
     function newTyped(){ /* A new typed object */ }
@@ -52,29 +57,17 @@
     function foo(){
       $(".container").addClass("show");
 
+      // Set height of the window and scroll after type function to it
+      var scrollHeight = $(window).height();
+      jQuery('body,html').animate({
+          scrollTop: scrollHeight+60
+      }, 2000);
 
-      var scrollFunction = function() {
-        // Set height of the window and scroll to it, after type function
-        var scrollHeight = $(window).height();
-        jQuery('body,html').animate({
-            scrollTop: scrollHeight+60
-        }, 500);
-      }
-
-      scrollFunction();
-
-      $(window).load(function(){
-        $.when(scrollFunction()).then(stickyFunction());
-      });
     }
 
-    // Fix the Nav-Bar on the Top
-    var stickyFunction = function() {
-      $("#sidebar").sticky({ topSpacing: 100, center:true, className:"hey" });
-    };
-
-
     </script>
+
+
 
 
   </head>
@@ -162,8 +155,8 @@
               <div class="col-md-12">
                 <figure class="effect-julia">
                   <div>
-                    <a href="images/1.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork" data-strip-options="side: 'right'">
-                      <img src="images/ny2.jpg" />
+                    <a href="images/1.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork" data-strip-options="side: 'top'">
+                      <img src="images/places/ny2.jpg" />
                     </a>
                   </div>
                 <figcaption>
@@ -183,13 +176,13 @@
             </div>
             <div class="row last">
               <div class="col-md-6">
-                  <a href="images/ny1.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork" data-strip-options="side: 'right'">
-                    <img src="images/ny1.jpg" />
+                  <a href="">
+                    <img src="images/places/ny1.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
-                  <a href="images/ny2.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork" data-strip-options="side: 'right'">
-                    <img src="images/ny2.jpg" />
+                  <a href="">
+                    <img src="images/places/ny2.jpg" />
                   </a>
               </div>
               <div class="next"><a href="#corse">next</a></div>
@@ -200,7 +193,7 @@
                 <figure class="effect-julia">
                   <div>
                     <a href="images/1.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork" data-strip-options="side: 'top'">
-                      <img src="images/c1.jpg" />
+                      <img src="images/places/c1.jpg" />
                     </a>
                   </div>
                 <figcaption>
@@ -221,12 +214,12 @@
             <div class="row last">
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/c2.jpg" />
+                    <img src="images/places/c2.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/c3.jpg" />
+                    <img src="images/places/c3.jpg" />
                   </a>
               </div>
             </div>
@@ -236,7 +229,7 @@
                 <figure class="effect-julia">
                   <div>
                     <a href="images/1.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork" data-strip-options="side: 'top'">
-                      <img src="images/h12.jpg" />
+                      <img src="images/places/h12.jpg" />
                     </a>
                   </div>
                 <figcaption>
@@ -257,72 +250,72 @@
             <div class="row">
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/h1.jpg" />
+                    <img src="images/places/h1.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/h2.jpg" />
-                  </a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/h3.jpg" />
-                  </a>
-              </div>
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/h4.jpg" />
+                    <img src="images/places/h2.jpg" />
                   </a>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/h5.jpg" />
+                    <img src="images/places/h3.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/h6.jpg" />
-                  </a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/h7.jpg" />
-                  </a>
-              </div>
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/h8.jpg" />
+                    <img src="images/places/h4.jpg" />
                   </a>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/h9.jpg" />
+                    <img src="images/places/h5.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/h10.jpg" />
+                    <img src="images/places/h6.jpg" />
+                  </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                  <a href="">
+                    <img src="images/places/h7.jpg" />
+                  </a>
+              </div>
+              <div class="col-md-6">
+                  <a href="">
+                    <img src="images/places/h8.jpg" />
+                  </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                  <a href="">
+                    <img src="images/places/h9.jpg" />
+                  </a>
+              </div>
+              <div class="col-md-6">
+                  <a href="">
+                    <img src="images/places/h10.jpg" />
                   </a>
               </div>
             </div>
             <div class="row last">
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/h11.jpg" />
+                    <img src="images/places/h11.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/h13.jpg" />
+                    <img src="images/places/h13.jpg" />
                   </a>
               </div>
             </div>
@@ -332,7 +325,7 @@
                 <figure class="effect-julia">
                   <div>
                     <a href="images/1.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork" data-strip-options="side: 'top'">
-                      <img src="images/b13.jpg" />
+                      <img src="images/places/b13.jpg" />
                     </a>
                   </div>
                 <figcaption>
@@ -353,72 +346,72 @@
             <div class="row">
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/b1.jpg" />
+                    <img src="images/places/b1.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/b2.jpg" />
-                  </a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/b3.jpg" />
-                  </a>
-              </div>
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/b4.jpg" />
+                    <img src="images/places/b2.jpg" />
                   </a>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/b5.jpg" />
+                    <img src="images/places/b3.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/b6.jpg" />
-                  </a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/b7.jpg" />
-                  </a>
-              </div>
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/b8.jpg" />
+                    <img src="images/places/b4.jpg" />
                   </a>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/b9.jpg" />
+                    <img src="images/places/b5.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/b10.jpg" />
+                    <img src="images/places/b6.jpg" />
+                  </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                  <a href="">
+                    <img src="images/places/b7.jpg" />
+                  </a>
+              </div>
+              <div class="col-md-6">
+                  <a href="">
+                    <img src="images/places/b8.jpg" />
+                  </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                  <a href="">
+                    <img src="images/places/b9.jpg" />
+                  </a>
+              </div>
+              <div class="col-md-6">
+                  <a href="">
+                    <img src="images/places/b10.jpg" />
                   </a>
               </div>
             </div>
             <div class="row last">
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/b11.jpg" />
+                    <img src="images/places/b11.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/b12.jpg" />
+                    <img src="images/places/b12.jpg" />
                   </a>
               </div>
             </div>
@@ -428,7 +421,7 @@
                 <figure class="effect-julia">
                   <div>
                     <a href="images/1.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork" data-strip-options="side: 'top'">
-                      <img src="images/sd2.jpg" />
+                      <img src="images/places/sd2.jpg" />
                     </a>
                   </div>
                 <figcaption>
@@ -449,60 +442,60 @@
             <div class="row">
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/sd1.jpg" />
+                    <img src="images/places/sd1.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/sd3.jpg" />
-                  </a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/sd4.jpg" />
-                  </a>
-              </div>
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/sd5.jpg" />
+                    <img src="images/places/sd3.jpg" />
                   </a>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/sd6.jpg" />
+                    <img src="images/places/sd4.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/sd7.jpg" />
+                    <img src="images/places/sd5.jpg" />
                   </a>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/sd8.jpg" />
+                    <img src="images/places/sd6.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/sd9.jpg" />
+                    <img src="images/places/sd7.jpg" />
+                  </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                  <a href="">
+                    <img src="images/places/sd8.jpg" />
+                  </a>
+              </div>
+              <div class="col-md-6">
+                  <a href="">
+                    <img src="images/places/sd9.jpg" />
                   </a>
               </div>
             </div>
             <div class="row last">
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/sd10.jpg" />
+                    <img src="images/places/sd10.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/sd11.jpg" />
+                    <img src="images/places/sd11.jpg" />
                   </a>
               </div>
             </div>
@@ -512,7 +505,7 @@
                 <figure class="effect-julia">
                   <div>
                     <a href="images/1.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork" data-strip-options="side: 'top'">
-                      <img src="images/r2.jpg" />
+                      <img src="images/places/r2.jpg" />
                     </a>
                   </div>
                 <figcaption>
@@ -533,7 +526,7 @@
             <div class="row last">
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/r1.jpg" />
+                    <img src="images/places/r1.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
@@ -548,7 +541,7 @@
                 <figure class="effect-julia">
                   <div>
                     <a href="images/1.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork" data-strip-options="side: 'top'">
-                      <img src="images/ci4.jpg" />
+                      <img src="images/places/ci4.jpg" />
                     </a>
                   </div>
                 <figcaption>
@@ -569,24 +562,24 @@
             <div class="row">
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/ci1.jpg" />
+                    <img src="images/places/ci1.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/ci2.jpg" />
+                    <img src="images/places/ci2.jpg" />
                   </a>
               </div>
             </div>
             <div class="row last">
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/ci5.jpg" />
+                    <img src="images/places/ci5.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/ci3.jpg" />
+                    <img src="images/places/ci3.jpg" />
                   </a>
               </div>
             </div>
@@ -596,7 +589,7 @@
                 <figure class="effect-julia">
                   <div>
                     <a href="images/1.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork" data-strip-options="side: 'top'">
-                      <img src="images/ch5.jpg" />
+                      <img src="images/places/ch5.jpg" />
                     </a>
                   </div>
                 <figcaption>
@@ -617,55 +610,55 @@
             <div class="row">
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/ch1.jpg" />
+                    <img src="images/places/ch1.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/ch2.jpg" />
-                  </a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/ch3.jpg" />
-                  </a>
-              </div>
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/ch4.jpg" />
+                    <img src="images/places/ch2.jpg" />
                   </a>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/ch6.jpg" />
+                    <img src="images/places/ch3.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/ch7.jpg" />
+                    <img src="images/places/ch4.jpg" />
                   </a>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/ch8.jpg" />
+                    <img src="images/places/ch6.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/ch9.jpg" />
+                    <img src="images/places/ch7.jpg" />
+                  </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                  <a href="">
+                    <img src="images/places/ch8.jpg" />
+                  </a>
+              </div>
+              <div class="col-md-6">
+                  <a href="">
+                    <img src="images/places/ch9.jpg" />
                   </a>
               </div>
             </div>
             <div class="row last">
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/ch10.jpg" />
+                    <img src="images/places/ch10.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
@@ -684,7 +677,7 @@
                 <figure class="effect-julia">
                   <div>
                     <a href="images/1.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork" data-strip-options="side: 'top'">
-                      <img src="images/l5.jpg" />
+                      <img src="images/places/l5.jpg" />
                     </a>
                   </div>
                 <figcaption>
@@ -705,84 +698,84 @@
             <div class="row">
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/l1.jpg" />
+                    <img src="images/places/l1.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/l2.jpg" />
-                  </a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/l3.jpg" />
-                  </a>
-              </div>
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/l4.jpg" />
+                    <img src="images/places/l2.jpg" />
                   </a>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/l15.jpg" />
+                    <img src="images/places/l3.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/l6.jpg" />
-                  </a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/l7.jpg" />
-                  </a>
-              </div>
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/l8.jpg" />
+                    <img src="images/places/l4.jpg" />
                   </a>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/l9.jpg" />
+                    <img src="images/places/l15.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/l10.jpg" />
-                  </a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/l11.jpg" />
-                  </a>
-              </div>
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/l12.jpg" />
+                    <img src="images/places/l6.jpg" />
                   </a>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/l13.jpg" />
+                    <img src="images/places/l7.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
                   <a href="">
-                    <img src="images/l14.jpg" />
+                    <img src="images/places/l8.jpg" />
+                  </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                  <a href="">
+                    <img src="images/places/l9.jpg" />
+                  </a>
+              </div>
+              <div class="col-md-6">
+                  <a href="">
+                    <img src="images/places/l10.jpg" />
+                  </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                  <a href="">
+                    <img src="images/places/l11.jpg" />
+                  </a>
+              </div>
+              <div class="col-md-6">
+                  <a href="">
+                    <img src="images/places/l12.jpg" />
+                  </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                  <a href="">
+                    <img src="images/places/l13.jpg" />
+                  </a>
+              </div>
+              <div class="col-md-6">
+                  <a href="">
+                    <img src="images/places/l14.jpg" />
                   </a>
               </div>
 
@@ -808,6 +801,13 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/toucheffects.js"></script>
 
+    <script>
+      // Sidebar fixed on the left side
+      $(window).load(function(){
+        $("#sidebar").sticky({ topSpacing: 100, center:true, className:"hey" });
+      });
+
+    </script>
 
   </body>
 </html>
