@@ -23,10 +23,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/modernizr.custom.js"></script>
 
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script type="text/javascript" src="js/jquery.sticky.js"></script>
+
+
 
     <script>
       $(window).load(function(){
-        $("#content-right > section > div").addClass("span");
+        // $("#content-right > section > div").addClass("span");
+        $("#sidebar").sticky({ topSpacing: 100, center:true, className:"hey" });
       });
     </script>
 
@@ -68,8 +73,6 @@
     </script>
 
 
-
-
   </head>
   <body id="scroll-able" data-spy="scroll" data-target="#target_nav" >
     <div class="site-wrapper">
@@ -80,6 +83,7 @@
               <h3 class="masthead-brand"><a href="#">Alexanders Travels</a></h3>
               <nav>
                 <ul class="nav masthead-nav nav-collapsable">
+                  <li><a href="#map" title="Past">Map</a>
                   <li><a href="#past" title="Past">Past</a>
                     <ul>
                       <li><a href="#newyork">New York</a></li>
@@ -114,12 +118,22 @@
         </div>
       </div>
     </div>
-    <div class="container" >
+    <div class="container" id="map">
+      <div class="row">
+        <section class="row" >
+          <div class="row col-md-12">
+            <div class="maparea6 col-md-11">
+              <div class="map"></div>
+            </div>
+          </div>
+        </section>
+      </div>
       <div class="row">
         <div class="col-md-3">
           <div class="col-md-9 sidebar-offcanvas" id="sidebar" role="navigation">
             <nav id="target_nav">
               <ul class="list-group nav">
+                <li id="sidemenu-map"><a href="#map" class="list-group-item">Map</a>
                 <li id="sidemenu-past"><a href="#past" class="list-group-item">Past</a>
                   <ul>
                     <li><a href="#newyork">New York</a></li>
@@ -148,9 +162,9 @@
             </nav>
           </div>
         </div>
-        <!-- New York -->
         <div class="col-md-9 grid cs-style-4" id="content-right">
           <section class="row" id="past">
+            <!-- New York -->
             <div class="row" id="newyork" class="jscroll">
               <div class="col-md-12">
                 <figure class="effect-julia">
@@ -790,8 +804,7 @@
       </div>
     </div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script type="text/javascript" src="js/jquery.sticky.js"></script>
+
 
     <!-- Strip Gallery -->
     <script type="text/javascript" src="js/strip.pkgd.min.js"></script>
@@ -801,13 +814,13 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/toucheffects.js"></script>
 
-    <script>
-      // Sidebar fixed on the left side
-      $(window).load(function(){
-        $("#sidebar").sticky({ topSpacing: 100, center:true, className:"hey" });
-      });
-
-    </script>
+    <!-- Map -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js" charset="utf-8" ></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.12/jquery.mousewheel.min.js" charset="utf-8" ></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js" charset="utf-8" ></script>
+    <script src="js/jquery.mapael.js" charset="utf-8" ></script>
+    <script src="js/maps/world_countries.js" charset="utf-8" ></script>
+    <script src="map.js" charset="utf-8" ></script>
 
   </body>
 </html>
