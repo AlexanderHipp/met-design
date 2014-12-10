@@ -119,14 +119,14 @@ $(function(){
 				longitude :121.473701,
 				value : 200001,
 				tooltip: {content : "Shanghai"},
-				href: "#shanghai"
+				href: "#shanghaiandbeijing"
 			},
 			'Beijing' : {
 				latitude :39.904211,
 				longitude :116.407395,
 				value : 200001,
 				tooltip: {content : "Beijing"},
-				href: "#beijing"
+				href: "#shanghaiandbeijing"
 			},
 			'London' : {
 				latitude :51.507351,
@@ -135,12 +135,12 @@ $(function(){
 				tooltip: {content : "London"},
 				href: "#london"
 			},
-			'Australia & New Zealand' : {
-				latitude :-25.274398,
-				longitude :133.775136,
+			'New Zealand' : {
+				latitude :-40.900557,
+				longitude :174.885971,
 				value : 200001,
-				tooltip: {content : "Australia & New Zealand"},
-				href: "#australiaandnewzealand"
+				tooltip: {content : "New Zealand"},
+				href: "#newzealand"
 			},
 			'South America' : {
 				latitude :-16.290154,
