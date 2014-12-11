@@ -258,7 +258,7 @@ $(function(){
 				}
 			},
 			"AU": {
-				"value": "6",
+				"value": "3100243",
 				"attrs": {
 
 				},

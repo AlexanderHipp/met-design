@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Alexanders Travels</title>
+    <title>Alexander's travels around the world</title>
 
     <!-- Image Hover-->
     <link rel="stylesheet" type="text/css" href="css/normalize.css" />
@@ -17,15 +17,22 @@
     <link href="style.css" rel="stylesheet">
 
     <!-- Google Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <link href='fonts/sourcesans.css' rel='stylesheet' type='text/css'>
 
     <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script src="js/modernizr.custom.js"></script>
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script type="text/javascript" src="js/jquery.sticky.js"></script>
 
+    <!-- Strip Gallery -->
+    <script type="text/javascript" src="js/strip.pkgd.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/strip.css"/>
+
+    <!-- Font Awesome -->
+    <link href="fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
 
     <script>
@@ -63,13 +70,50 @@
     function foo(){
       $(".container").addClass("show");
 
-      // Set height of the window and scroll after type function to it
+      // Set height of the window, and scroll after type function, to it
       var scrollHeight = $(window).height();
       jQuery('body,html').animate({
           scrollTop: scrollHeight
       }, 2000);
 
     }
+
+
+    // Find all YouTube videos
+    var $allVideos = $("iframe[src^='http://player.vimeo.com'], iframe[src^='http://www.youtube.com']"),
+
+    // The element that is fluid width
+    $fluidEl = $("body");
+
+    // Figure out and save aspect ratio for each video
+    $allVideos.each(function() {
+
+      $(this)
+      .data('aspectRatio', this.height / this.width)
+
+      // and remove the hard coded width/height
+      .removeAttr('height')
+      .removeAttr('width');
+
+    });
+
+    // When the window is resized
+    $(window).resize(function() {
+
+      var newWidth = $fluidEl.width();
+
+      // Resize all videos according to their own aspect ratio
+      $allVideos.each(function() {
+
+        var $el = $(this);
+        $el
+        .width(newWidth)
+        .height(newWidth * $el.data('aspectRatio'));
+
+      });
+
+      // Kick off one resize to fix all videos on page load
+    }).resize();
 
     </script>
 
@@ -81,14 +125,15 @@
         <div class="cover-container">
           <div class="masthead clearfix">
             <div class="inner">
-              <h3 class="masthead-brand"><a href="#">Alexanders Travels</a></h3>
+              <h3 class="masthead-brand"><a href="#">Alexander's Travels</a></h3>
               <nav>
                 <ul class="nav masthead-nav nav-collapsable">
-                  <li><a href="#map" title="Past">Map</a>
+                  <li class="essay"><a href="/essay" title="Past">Essay</a>
+                  <li class="hideit"><a href="#map" title="Past">Map</a>
                   <li><a href="#past" title="Past">Past</a>
                     <ul>
                       <li><a href="#newyork">New York</a></li>
-                      <li><a href="#corse">Corse</a></li>
+                      <li><a href="#corsica">Corsica</a></li>
                       <li><a href="#hawaii">Hawaii</a></li>
                       <li><a href="#boston">Boston</a></li>
                       <li><a href="#southgermany">South Germany</a></li>
@@ -124,7 +169,7 @@
         <section class="row" >
           <div class="row col-md-12">
             <div class="maparea6 col-md-11">
-              <div class="map"></div>
+              <div class="map hideit"></div>
             </div>
           </div>
         </section>
@@ -134,11 +179,12 @@
           <div class="col-md-9 sidebar-offcanvas" id="sidebar" role="navigation">
             <nav id="target_nav">
               <ul class="list-group nav">
-                <li id="sidemenu-map"><a href="#map" class="list-group-item">Map</a>
+                <li id="sidemenu-top"><a href="#" class="list-group-item"><i class="fa fa-chevron-up"></i></a></li>
+                <li id="sidemenu-map" class="hideit"><a href="#map" class="list-group-item">Map</a>
                 <li id="sidemenu-past"><a href="#past" class="list-group-item">Past</a>
-                  <ul>
+                  <ul class="secondlevel">
                     <li><a href="#newyork">New York</a></li>
-                    <li><a href="#corse">Corse</a></li>
+                    <li><a href="#corsica">Corsica</a></li>
                     <li><a href="#hawaii">Hawaii</a></li>
                     <li><a href="#boston">Boston</a></li>
                     <li><a href="#southgermany">South Germany</a></li>
@@ -148,30 +194,31 @@
                   </ul>
                 </li>
                 <li id="sidemenu-present"><a href="#present" class="list-group-item">Present</a>
-                  <ul>
+                  <ul class="secondlevel">
                     <li><a href="#london">London</a></li>
                   </ul>
                 </li>
                 <li id="sidemenu-future"><a href="#future" class="list-group-item">Future</a>
-                  <ul>
+                  <ul class="secondlevel">
                     <li><a href="#scandinavia">Scandinavia</a></li>
                     <li><a href="#southamerica">South America</a></li>
                     <li><a href="#newzealand">New Zealand</a></li>
                   </ul>
                 </li>
+
               </ul>
             </nav>
           </div>
         </div>
-        <div class="col-md-9 grid cs-style-4" id="content-right">
+        <div class="col-md-9 grid cs-style-4 col-sm-12" id="content-right">
           <section class="row" >
             <!-- New York -->
             <div class="row" id="newyork" class="jscroll">
               <div class="col-md-12">
                 <figure class="effect-julia">
                   <div>
-                    <a href="images/1.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork" data-strip-options="side: 'top'">
-                      <img src="images/places/ny3.jpg" />
+                    <a href="images/ny3.jpg" class="strip" data-strip-caption="View from Top of the Rock" data-strip-group="newyork" data-strip-options="side: 'left'">
+                      <img src="images/ny3.jpg" />
                     </a>
                   </div>
                 <figcaption>
@@ -181,146 +228,144 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-md-6 map-6">
-                <div class="panel panel-default">
-                  <!-- Default panel contents -->
-                  <div class="panel-heading">Fun Facts</div>
-
-                  <!-- Table -->
-                  <table class="table">
-                    <tr>
-                      <td>a</td>
-                      <td>b</td>
-                    </tr>
-                    <tr>
-                      <td>b</td>
-                      <td>b</td>
-                    </tr>
-                  </table>
-                </div>
+              <div class="col-md-6">
+                <a href="images/ny1.jpg" class="strip" data-strip-caption="Times Square" data-strip-group="newyork" data-strip-options="side: 'left'">
+                  <img src="images/ny1.jpg" />
+                </a>
               </div>
               <div class="col-md-6">
+                <a href="images/ny2.jpg" class="strip" data-strip-caption="China Town" data-strip-group="newyork" data-strip-options="side: 'left'">
+                  <img src="images/ny2.jpg" />
+                </a>
+              </div>
+            </div>
+            <div class="row">
+              <!-- <div class="col-md-6">
+                <a href="images/ny8.jpg" class="strip" data-strip-caption="Streets of Manhattan" data-strip-group="newyork" data-strip-options="side: 'left'">
+                  <img src="images/ny8.jpg" />
+                </a>
+              </div> -->
+              <div class="col-md-6 text">
                 <h1 class="text-left">The city that never sleeps </h1>
                 <p class="lead text-left">
+                  In 2012 I went to New York for one week. It was great to see all the Skyscrapers and to life the special New Yorker way of life.
+                  The sun was boiling and we have done all the tourist trips. <br /><br />
+                  We visited Ellis Island, the Times Square (multiple times to be honest) and had the great view from the "Top of the Rock".
+                  Our Hotel was located in China Town, quite a separate city in the middle of the Big Apple.
+                  They are right, when they say: There is no other place like New York (maybe London).
+                </p>
+              </div>
+              <div class="col-md-6">
+                <a href="images/ny4.jpg" class="strip" data-strip-caption="Brookly Bridge" data-strip-group="newyork" data-strip-options="side: 'left'">
+                    <img src="images/ny4.jpg" />
+                  </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <a href="images/ny5.jpg" class="strip" data-strip-caption="View beyond the Hudson" data-strip-group="newyork" data-strip-options="side: 'left'">
+                  <img src="images/ny5.jpg" />
+                </a>
+              </div>
+              <div class="col-md-6">
+                <a href="images/ny6.jpg" class="strip" data-strip-caption="Manhattan Pier" data-strip-group="newyork" data-strip-options="side: 'left'">
+                  <img src="images/ny6.jpg" />
+                </a>
+              </div>
+            </div>
+            <div class="row last">
+              <div class="span6">
+                <div class="flex-video widescreen">
+                  <iframe allowfullscreen="" src="http://player.vimeo.com/video/68384616" frameborder="0" width="100%" height="100%"></iframe>
+                </div>
+              </div>
+            </div>
+            <!-- corsica -->
+            <div class="row" id="corsica" class="jscroll">
+              <div class="col-md-12">
+                <figure class="effect-julia">
+                  <div>
+                    <a href="images/c5.jpg" class="strip" data-strip-caption="House in Bonifacio" data-strip-group="corsica" data-strip-options="side: 'right'">
+                      <img src="images/c5.jpg" />
+                    </a>
+                  </div>
+                <figcaption>
+                  <h2>Corsica</h2>
+                </figcaption>
+              </figure>
+              </div>
+            </div>
 
+            <div class="row">
+              <div class="col-md-6">
+                <a href="images/c9.jpg" class="strip" data-strip-caption="The island beauty" data-strip-group="corsica" data-strip-options="side: 'right'">
+                  <img src="images/c9.jpg" />
+                </a>
+              </div>
+              <div class="col-md-6">
+                <a href="images/c3.jpg" class="strip" data-strip-caption="Our pool" data-strip-group="corsica" data-strip-options="side: 'right'">
+                  <img src="images/c3.jpg" />
+                </a>
+              </div>
+            </div>
+            <div class="row">
+                <!-- <div class="col-md-6">
+                  <a href="images/c2.jpg" class="strip" data-strip-caption="Beaches and Volleyball" data-strip-group="corsica" data-strip-options="side: 'right'">
+                  <img src="images/c2.jpg" />
+                </a>
+              </div> -->
+              <div class="col-md-6">
+                <a href="images/c7.jpg" class="strip" data-strip-caption="The water is so pure" data-strip-group="corsica" data-strip-options="side: 'right'">
+                  <img src="images/c7.jpg" />
+                </a>
+              </div>
+              <div class="col-md-6 text">
+                <h1 class="text-left">Lonely beaches and mountains</h1>
+                <p class="lead text-left">
+                  In the summertime 2012 we made a road trip with a 9-seater from Germany to Corsica. 28 hours later and after we visited Switzerland, Italy and a ferry we arrived in Corsica.<br /><br />
+                  For the next two weeks it felt like the worls stands still. No Stress and so many lonely and quiet beaches. We drove around the island, hiked in the mountains and swam in the river.
                 </p>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/ny1.jpg" />
+                <a href="images/c6.jpg" class="strip" data-strip-caption="Cliffs near Bonifacio" data-strip-group="corsica" data-strip-options="side: 'right'">
+                  <img src="images/c6.jpg" />
                 </a>
               </div>
               <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/ny2.jpg" />
+                <a href="images/c10.jpg" class="strip" data-strip-caption="Lonely beaches" data-strip-group="corsica" data-strip-options="side: 'right'">
+                  <img src="images/c10.jpg" />
                 </a>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/ny8.jpg" />
-                  </a>
-              </div>
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/ny4.jpg" />
-                  </a>
+              <div class="span6">
+                <div class="flex-video widescreen">
+                  <iframe allowfullscreen="" src="http://player.vimeo.com/video/56248257" frameborder="0" width="100%" height="100%"></iframe>
+                </div>
               </div>
             </div>
             <div class="row last">
               <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/ny5.jpg" />
+                <a href="images/c8.jpg" class="strip" data-strip-caption="A tiny river in the mountains" data-strip-group="corsica" data-strip-options="side: 'right'">
+                  <img src="images/c8.jpg" />
                 </a>
               </div>
               <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/ny6.jpg" />
+                <a href="images/c4.jpg" class="strip" data-strip-caption="Wanderer" data-strip-group="corsica" data-strip-options="side: 'right'">
+                  <img src="images/c4.jpg" />
                 </a>
               </div>
             </div>
-            <!-- Corse -->
-            <div class="row" id="corse" class="jscroll">
-              <div class="col-md-12">
-                <figure class="effect-julia">
-                  <div>
-                    <a href="images/1.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork" data-strip-options="side: 'top'">
-                      <img src="images/places/c5.jpg" />
-                    </a>
-                  </div>
-                <figcaption>
-                  <h2>Corse</h2>
-                </figcaption>
-              </figure>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <h1 class="text-left">The city that never sleeps</h1>
-                <p class="lead text-left">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, et dolore maga. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p>
-              </div>
-              <div class="col-md-6 map-6">
 
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/c9.jpg" />
-                </a>
-              </div>
-              <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/c3.jpg" />
-                </a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/c6.jpg" />
-                </a>
-              </div>
-              <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/c10.jpg" />
-                </a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/c8.jpg" />
-                </a>
-              </div>
-              <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/c4.jpg" />
-                </a>
-              </div>
-            </div>
-            <div class="row last">
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/c2.jpg" />
-                  </a>
-              </div>
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/c7.jpg" />
-                  </a>
-              </div>
-            </div>
             <!-- Hawaii -->
             <div class="row" id="hawaii" class="jscroll">
               <div class="col-md-12">
                 <figure class="effect-julia">
                   <div>
-                    <a href="images/1.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork" data-strip-options="side: 'top'">
-                      <img src="images/places/h12.jpg" />
+                    <a href="images/h12.jpg" class="strip" data-strip-caption="Honolulu" data-strip-group="hawaii" data-strip-options="side: 'right'">
+                      <img src="images/h12.jpg" />
                     </a>
                   </div>
                 <figcaption>
@@ -329,84 +374,92 @@
               </figure>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <h1 class="text-left">The city that never sleeps</h1>
-                <p class="lead text-left">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, et dolore maga. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p>
-              </div>
-              <div class="col-md-6 map-6">
 
-              </div>
-            </div>
+
             <div class="row">
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/h1.jpg" />
+                <a href="images/h1.jpg" class="strip" data-strip-caption="Watersport Paradise" data-strip-group="hawaii" data-strip-options="side: 'right'">
+                    <img src="images/h1.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/h2.jpg" />
-                  </a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/h3.jpg" />
-                  </a>
-              </div>
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/h4.jpg" />
+                <a href="images/h2.jpg" class="strip" data-strip-caption="My lighthouse" data-strip-group="hawaii" data-strip-options="side: 'right'">
+                    <img src="images/h2.jpg" />
                   </a>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/h5.jpg" />
-                  </a>
+              <div class="col-md-6 text">
+                <h1 class="text-left">Aloha Lifestyle</h1>
+                <p class="lead text-left">
+                  From October 2012 to January 2013 I was in Hawaii, better in Honolulu, for an internship. Ok it was more like surfing, hiking and just laying at the beach to be honest. <br /><br />
+                  But they told me, that is the hawaiian way of life. Everything is about surfing in Hawaii or other sports you can do. There are so many possibilities.
+                  I had one of my best weekends ever there. We went to the north coast to watch the World Cup of surfing. The waves were quiet big that day.
+                </p>
               </div>
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/h6.jpg" />
+                <a href="images/h3.jpg" class="strip" data-strip-caption="Hiking in the forest" data-strip-group="hawaii" data-strip-options="side: 'right'">
+                    <img src="images/h3.jpg" />
                   </a>
               </div>
+              <!-- <div class="col-md-6">
+                <a href="images/h4.jpg" class="strip" data-strip-caption="Sunset in Honolulu" data-strip-group="hawaii" data-strip-options="side: 'right'">
+                    <img src="images/h4.jpg" />
+                  </a>
+              </div> -->
             </div>
             <div class="row">
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/h7.jpg" />
+                <a href="images/h5.jpg" class="strip" data-strip-caption="The north coast's famous tree" data-strip-group="hawaii" data-strip-options="side: 'right'">
+                    <img src="images/h5.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/h8.jpg" />
+                <a href="images/h6.jpg" class="strip" data-strip-caption="Weekend at the north coast" data-strip-group="hawaii" data-strip-options="side: 'right'">
+                    <img src="images/h6.jpg" />
                   </a>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/h9.jpg" />
+                <a href="images/h7.jpg" class="strip" data-strip-caption="Aloha flair" data-strip-group="hawaii" data-strip-options="side: 'right'">
+                    <img src="images/h7.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/h10.jpg" />
+                <a href="images/h8.jpg" class="strip" data-strip-caption="Great view at the north shore" data-strip-group="hawaii" data-strip-options="side: 'right'">
+                    <img src="images/h8.jpg" />
+                  </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="span6">
+                <div class="flex-video widescreen">
+                  <iframe allowfullscreen="" src="http://player.vimeo.com/video/62242433" frameborder="0" width="100%" height="100%"></iframe>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <a href="images/h9.jpg" class="strip" data-strip-caption="Tide Pools" data-strip-group="hawaii" data-strip-options="side: 'right'">
+                    <img src="images/h9.jpg" />
+                  </a>
+              </div>
+              <div class="col-md-6">
+                <a href="images/h10.jpg" class="strip" data-strip-caption="Beach life" data-strip-group="hawaii" data-strip-options="side: 'right'">
+                    <img src="images/h10.jpg" />
                   </a>
               </div>
             </div>
             <div class="row last">
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/h11.jpg" />
+                <a href="images/h11.jpg" class="strip" data-strip-caption="Waiting for the surfers" data-strip-group="hawaii" data-strip-options="side: 'right'">
+                    <img src="images/h11.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/h13.jpg" />
+                <a href="images/h13.jpg" class="strip" data-strip-caption="No swimming allowed" data-strip-group="hawaii" data-strip-options="side: 'right'">
+                    <img src="images/h13.jpg" />
                   </a>
               </div>
             </div>
@@ -415,8 +468,8 @@
               <div class="col-md-12">
                 <figure class="effect-julia">
                   <div>
-                    <a href="images/1.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork" data-strip-options="side: 'top'">
-                      <img src="images/places/b13.jpg" />
+                    <a href="images/b13.jpg" class="strip" data-strip-caption="Cambridge Campus" data-strip-group="boston" data-strip-options="side: 'left'">
+                      <img src="images/b13.jpg" />
                     </a>
                   </div>
                 <figcaption>
@@ -425,84 +478,93 @@
               </figure>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <h1 class="text-left">The city that never sleeps</h1>
-                <p class="lead text-left">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, et dolore maga. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p>
-              </div>
-              <div class="col-md-6 map-6">
 
-              </div>
-            </div>
+
             <div class="row">
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/b1.jpg" />
+                <a href="images/b1.jpg" class="strip" data-strip-caption="Financial District" data-strip-group="boston" data-strip-options="side: 'left'">
+                    <img src="images/b1.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/b2.jpg" />
-                  </a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/b3.jpg" />
-                  </a>
-              </div>
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/b4.jpg" />
+                <a href="images/b2.jpg" class="strip" data-strip-caption="Boston Bruins" data-strip-group="boston" data-strip-options="side: 'left'">
+                    <img src="images/b2.jpg" />
                   </a>
               </div>
             </div>
             <div class="row">
+              <div class="span6">
+                <div class="flex-video widescreen">
+                  <iframe allowfullscreen="" src="http://player.vimeo.com/video/99591060" frameborder="0" width="100%" height="100%"></iframe>
+                </div>
+              </div>
+            </div>
+            <div class="row">
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/b5.jpg" />
+                <a href="images/b3.jpg" class="strip" data-strip-caption="Salisbury Beach" data-strip-group="boston" data-strip-options="side: 'left'">
+                    <img src="images/b3.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/b6.jpg" />
+                <a href="images/b4.jpg" class="strip" data-strip-caption="A walk at the beach" data-strip-group="boston" data-strip-options="side: 'left'">
+                    <img src="images/b4.jpg" />
                   </a>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/b7.jpg" />
+                <a href="images/b5.jpg" class="strip" data-strip-caption="Boston Celtics" data-strip-group="boston" data-strip-options="side: 'left'">
+                    <img src="images/b5.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/b8.jpg" />
+                <a href="images/b6.jpg" class="strip" data-strip-caption="Way to Cambridge" data-strip-group="boston" data-strip-options="side: 'left'">
+                    <img src="images/b6.jpg" />
                   </a>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/b9.jpg" />
+                <a href="images/b7.jpg" class="strip" data-strip-caption="Motel at the beach" data-strip-group="boston" data-strip-options="side: 'left'">
+                    <img src="images/b7.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/b10.jpg" />
+                <a href="images/b8.jpg" class="strip" data-strip-caption="Want to rent" data-strip-group="boston" data-strip-options="side: 'left'">
+                    <img src="images/b8.jpg" />
                   </a>
+              </div>
+            </div>
+            <div class="row">
+              <!-- <div class="col-md-6">
+                <a href="images/b9.jpg" class="strip" data-strip-caption="Red Sox badges" data-strip-group="boston" data-strip-options="side: 'left'">
+                    <img src="images/b9.jpg" />
+                  </a>
+              </div> -->
+              <div class="col-md-6">
+                <a href="images/b10.jpg" class="strip" data-strip-caption="Red Sox game" data-strip-group="boston" data-strip-options="side: 'left'">
+                    <img src="images/b10.jpg" />
+                  </a>
+              </div>
+              <div class="col-md-6 text">
+                <h1 class="text-left">Go Bruins, Celtics and Red Sox</h1>
+                <p class="lead text-left">
+                  In Boston is everything about there four big teams. <br/><br/>
+                  During the spring in 2013 I went to Boston for an internship at a game company.
+                  My appartement was real close to the beach, it was just perfect.<br/><br/>
+                  I did trips to Cambridge, to New Hamption and Maine. But the real Boston atmosphere was something very special.
+                </p>
               </div>
             </div>
             <div class="row last">
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/b11.jpg" />
+                <a href="images/b11.jpg" class="strip" data-strip-caption="Whale watching" data-strip-group="boston" data-strip-options="side: 'left'">
+                    <img src="images/b11.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/b12.jpg" />
+                <a href="images/b12.jpg" class="strip" data-strip-caption="Newburyport" data-strip-group="boston" data-strip-options="side: 'left'">
+                    <img src="images/b12.jpg" />
                   </a>
               </div>
             </div>
@@ -511,8 +573,8 @@
               <div class="col-md-12">
                 <figure class="effect-julia">
                   <div>
-                    <a href="images/1.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork" data-strip-options="side: 'top'">
-                      <img src="images/places/sd2.jpg" />
+                    <a href="images/sd2.jpg" class="strip" data-strip-caption="Honburg Tuttlingen" data-strip-group="southgermany" data-strip-options="side: 'right'">
+                      <img src="images/sd2.jpg" />
                     </a>
                   </div>
                 <figcaption>
@@ -521,72 +583,79 @@
               </figure>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <h1 class="text-left">The city that never sleeps</h1>
-                <p class="lead text-left">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, et dolore maga. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p>
-              </div>
-              <div class="col-md-6 map-6">
 
-              </div>
-            </div>
+
             <div class="row">
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/sd1.jpg" />
+                  <a href="images/sd1.jpg" class="strip" data-strip-caption="Munich Viktualienmarkt" data-strip-group="southgermany" data-strip-options="side: 'right'">
+                    <img src="images/sd1.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/sd3.jpg" />
-                  </a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/sd4.jpg" />
-                  </a>
-              </div>
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/sd5.jpg" />
+                  <a href="images/sd3.jpg" class="strip" data-strip-caption="Lake of constance" data-strip-group="southgermany" data-strip-options="side: 'right'">
+                    <img src="images/sd3.jpg" />
                   </a>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/sd6.jpg" />
+                  <a href="images/sd4.jpg" class="strip" data-strip-caption="Tuttlingen" data-strip-group="southgermany" data-strip-options="side: 'right'">
+                    <img src="images/sd4.jpg" />
+                  </a>
+              </div>
+              <!-- <div class="col-md-6">
+                  <a href="images/sd5.jpg" class="strip" data-strip-caption="Tuttlingen" data-strip-group="southgermany" data-strip-options="side: 'right'">
+                    <img src="images/sd5.jpg" />
+                  </a>
+              </div> -->
+              <div class="col-md-6 text">
+                <h1 class="text-left">My home</h1>
+                <p class="lead text-left">
+                  During the years 2012 to 2014, I visited some very special places around my hometown Tuttlingen. These are just a view impression what my country looks like.<br/><br/>
+                  Mostly from Karlsruhe, where my university is located, or from Munich and Stuttgart. The to biggest cities in Southern Germany. My favorite of all time the lake of constance is also presented.
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                  <a href="images/sd6.jpg" class="strip" data-strip-caption="Karlsruhe" data-strip-group="southgermany" data-strip-options="side: 'right'">
+                    <img src="images/sd6.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/sd7.jpg" />
+                  <a href="images/sd7.jpg" class="strip" data-strip-caption="Wasen Stuttgart" data-strip-group="southgermany" data-strip-options="side: 'right'">
+                    <img src="images/sd7.jpg" />
                   </a>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/sd8.jpg" />
+                  <a href="images/sd8.jpg" class="strip" data-strip-caption="Karlsruhe" data-strip-group="southgermany" data-strip-options="side: 'right'">
+                    <img src="images/sd8.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/sd9.jpg" />
+                  <a href="images/sd9.jpg" class="strip" data-strip-caption="Tram Karlsruhe" data-strip-group="southgermany" data-strip-options="side: 'right'">
+                    <img src="images/sd9.jpg" />
                   </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="span6">
+                <div class="flex-video widescreen">
+                  <iframe allowfullscreen="" src="http://player.vimeo.com/video/10667508" frameborder="0" width="100%" height="100%"></iframe>
+                </div>
               </div>
             </div>
             <div class="row last">
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/sd10.jpg" />
+                  <a href="images/sd10.jpg" class="strip" data-strip-caption="Tram Station Karlsruhe" data-strip-group="southgermany" data-strip-options="side: 'right'">
+                    <img src="images/sd10.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/sd11.jpg" />
+                  <a href="images/sd11.jpg" class="strip" data-strip-caption="Surfing in Munich" data-strip-group="southgermany" data-strip-options="side: 'right'">
+                    <img src="images/sd11.jpg" />
                   </a>
               </div>
             </div>
@@ -595,8 +664,8 @@
               <div class="col-md-12">
                 <figure class="effect-julia">
                   <div>
-                    <a href="images/1.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork" data-strip-options="side: 'top'">
-                      <img src="images/places/r2.jpg" />
+                    <a href="images/r2.jpg" class="strip" data-strip-caption="Ancient Rome" data-strip-group="rome" data-strip-options="side: 'right'">
+                      <img src="images/r2.jpg" />
                     </a>
                   </div>
                 <figcaption>
@@ -605,36 +674,44 @@
               </figure>
               </div>
             </div>
+
+
             <div class="row">
               <div class="col-md-6">
-                <h1 class="text-left">The city that never sleeps</h1>
-                <p class="lead text-left">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, et dolore maga. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p>
+                  <a href="images/r1.jpg" class="strip" data-strip-caption="Pretty Hotel at the corner" data-strip-group="rome" data-strip-options="side: 'right'">
+                    <img src="images/r1.jpg" />
+                  </a>
               </div>
-              <div class="col-md-6 map-6">
-
+              <div class="col-md-6 text">
+                <h1 class="text-left">A dream comes true</h1>
+                <p class="lead text-left">
+                  One of my favorite places I always wanted to visit is Rome. So my brother and me did a little 4-days trip to the Italian capital in spring 2014.<br/ ><br />
+                  The ancient city is full with architectural masterpieces and there is history at every corner.
+                  Everyone should visit the "eternal city" at least once in their lifetime. Drink a real italian coffee, eat italian ice or did I mentioned the pizza and pasta. So many delicious food.
+                </p>
               </div>
+              <!-- <div class="col-md-6">
+                  <a href="images/r3.jpg" class="strip" data-strip-caption="Cathedral focus" data-strip-group="rome" data-strip-options="side: 'right'">
+                    <img src="images/r3.jpg" />
+                  </a>
+              </div> -->
             </div>
             <div class="row">
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/r1.jpg" />
-                  </a>
-              </div>
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/r3.jpg" />
-                  </a>
+              <div class="span6">
+                <div class="flex-video widescreen">
+                  <iframe allowfullscreen="" src="http://player.vimeo.com/video/83590373" frameborder="0" width="100%" height="100%"></iframe>
+                </div>
               </div>
             </div>
             <div class="row last">
               <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/r4.jpg" />
+                <a href="images/r4.jpg" class="strip" data-strip-caption="Palms in Rome" data-strip-group="rome" data-strip-options="side: 'right'">
+                  <img src="images/r4.jpg" />
                 </a>
               </div>
               <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/r5.jpg" />
+                <a href="images/r5.jpg" class="strip" data-strip-caption="Art Market" data-strip-group="rome" data-strip-options="side: 'right'">
+                  <img src="images/r5.jpg" />
                 </a>
               </div>
             </div>
@@ -643,8 +720,8 @@
               <div class="col-md-12">
                 <figure class="effect-julia">
                   <div>
-                    <a href="images/1.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork" data-strip-options="side: 'top'">
-                      <img src="images/places/ci4.jpg" />
+                    <a href="images/ci4.jpg" class="strip" data-strip-caption="AIDA waits for us" data-strip-group="canaryislands" data-strip-options="side: 'right'">
+                      <img src="images/ci4.jpg" />
                     </a>
                   </div>
                 <figcaption>
@@ -653,36 +730,46 @@
               </figure>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <h1 class="text-left">The city that never sleeps</h1>
-                <p class="lead text-left">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, et dolore maga. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p>
-              </div>
-              <div class="col-md-6 map-6">
 
+            <div class="row">
+              <div class="span6">
+                <div class="flex-video widescreen">
+                  <iframe allowfullscreen="" src="http://player.vimeo.com/video/25687790" frameborder="0" width="100%" height="100%"></iframe>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 text">
+                <h1 class="text-left">5 islands in a week</h1>
+                <p class="lead text-left">
+                  In spring 2014 my family and I did a cruise trip with AIDA to the Canary Islands.
+                  It was a great experience, because every morning you wake up it is a completely different islands out there.<br /><br/>
+                  So we visited Gran Canaria, Lanzarote, Fuerteventura, Madeira and Tenerife.
+                  The flora and fauna of each island is so special and different from the others. You would never think they belong together.
+                </p>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/ci1.jpg" />
+                  <a href="images/ci1.jpg" class="strip" data-strip-caption="Nice Harbor" data-strip-group="canaryislands" data-strip-options="side: 'right'">
+                    <img src="images/ci1.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/ci2.jpg" />
+                  <a href="images/ci2.jpg" class="strip" data-strip-caption="Volcano atmosphere" data-strip-group="canaryislands" data-strip-options="side: 'right'">
+                    <img src="images/ci2.jpg" />
                   </a>
               </div>
             </div>
             <div class="row last">
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/ci5.jpg" />
+                  <a href="images/ci5.jpg" class="strip" data-strip-caption="Island Roadtrip" data-strip-group="canaryislands" data-strip-options="side: 'right'">
+                    <img src="images/ci5.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/ci3.jpg" />
+                  <a href="images/ci3.jpg" class="strip" data-strip-caption="Beautiful Beachside" data-strip-group="canaryislands" data-strip-options="side: 'right'">
+                    <img src="images/ci3.jpg" />
                   </a>
               </div>
             </div>
@@ -691,8 +778,8 @@
               <div class="col-md-12">
                 <figure class="effect-julia">
                   <div>
-                    <a href="images/1.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork" data-strip-options="side: 'top'">
-                      <img src="images/places/ch5.jpg" />
+                    <a href="images/ch5.jpg" class="strip" data-strip-caption="Skyline Shanghai" data-strip-group="shanghaiandbeijing" data-strip-options="side: 'left'">
+                      <img src="images/ch5.jpg" />
                     </a>
                   </div>
                 <figcaption>
@@ -701,77 +788,71 @@
               </figure>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <h1 class="text-left">The city that never sleeps</h1>
-                <p class="lead text-left">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, et dolore maga. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p>
-              </div>
-              <div class="col-md-6 map-6">
 
-              </div>
-            </div>
+
             <div class="row">
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/ch1.jpg" />
+                  <a href="images/ch1.jpg" class="strip" data-strip-caption="Olympic Centre Beijing" data-strip-group="shanghaiandbeijing" data-strip-options="side: 'left'">
+                    <img src="images/ch1.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/ch2.jpg" />
-                  </a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/ch3.jpg" />
-                  </a>
-              </div>
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/ch4.jpg" />
+                  <a href="images/ch2.jpg" class="strip" data-strip-caption="Skyline Shanghai" data-strip-group="shanghaiandbeijing" data-strip-options="side: 'left'">
+                    <img src="images/ch2.jpg" />
                   </a>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/ch6.jpg" />
+                  <a href="images/ch3.jpg" class="strip" data-strip-caption="Rooftop Shanghai" data-strip-group="shanghaiandbeijing" data-strip-options="side: 'left'">
+                    <img src="images/ch3.jpg" />
                   </a>
               </div>
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/ch7.jpg" />
+              <!-- <div class="col-md-6">
+                  <a href="images/ch4.jpg" class="strip" data-strip-caption="Ancient Market" data-strip-group="shanghaiandbeijing" data-strip-options="side: 'left'">
+                    <img src="images/ch4.jpg" />
                   </a>
+              </div> -->
+              <div class="col-md-6 text">
+                <h1 class="text-left">Diffent culture - different rules</h1>
+                <p class="lead text-left">
+                  In summer 2014 I visited my brother and friends in Shanghai for two weeks. The city is absolutely phenomenal and the fact that back in 1993 there were no Skyscrapers at all.<br /><br />
+                  We went by the fast-track train from the very "western-orientated" Shanghai to Beijing. that wwas a completely different world.
+                  So much history concentrated on one spot in china. The great wall and the forbidden city are only two highlights of the trip I will never forget.
+                </p>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/ch8.jpg" />
+                  <a href="images/ch6.jpg" class="strip" data-strip-caption="The great wall" data-strip-group="shanghaiandbeijing" data-strip-options="side: 'left'">
+                    <img src="images/ch6.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/ch9.jpg" />
+                  <a href="images/ch7.jpg" class="strip" data-strip-caption="The forbidden city" data-strip-group="shanghaiandbeijing" data-strip-options="side: 'left'">
+                    <img src="images/ch7.jpg" />
                   </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="span6">
+                <div class="flex-video widescreen">
+                  <iframe allowfullscreen="" src="http://player.vimeo.com/video/63635193" frameborder="0" width="100%" height="100%"></iframe>
+                </div>
               </div>
             </div>
             <div class="row last">
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/ch10.jpg" />
+                  <a href="images/ch8.jpg" class="strip" data-strip-caption="View on Shanghai" data-strip-group="shanghaiandbeijing" data-strip-options="side: 'left'">
+                    <img src="images/ch8.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
-                  <a href="">
-                    <img src="" />
+                  <a href="images/ch9.jpg" class="strip" data-strip-caption="Bow and arrow" data-strip-group="shanghaiandbeijing" data-strip-options="side: 'left'">
+                    <img src="images/ch9.jpg" />
                   </a>
               </div>
             </div>
-            <!-- -->
-
           </section>
           <section class="row" id="present">
             <!-- London -->
@@ -779,8 +860,8 @@
               <div class="col-md-12">
                 <figure class="effect-julia">
                   <div>
-                    <a href="images/1.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork" data-strip-options="side: 'top'">
-                      <img src="images/places/l5.jpg" />
+                    <a href="images/l5.jpg" class="strip" data-strip-caption="View on the Tower Bridge" data-strip-group="london" data-strip-options="side: 'right'">
+                      <img src="images/l5.jpg" />
                     </a>
                   </div>
                 <figcaption>
@@ -791,94 +872,101 @@
             </div>
             <div class="row">
               <div class="col-md-6">
-                <h1 class="text-left">The city that never sleeps</h1>
-                <p class="lead text-left">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, et dolore maga. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p>
-              </div>
-              <div class="col-md-6 map-6">
-
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/l1.jpg" />
+                  <a href="images/l1.jpg" class="strip" data-strip-caption="Always rainy" data-strip-group="london" data-strip-options="side: 'right'">
+                    <img src="images/l1.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/l2.jpg" />
+                  <a href="images/l2.jpg" class="strip" data-strip-caption="Clissold Park" data-strip-group="london" data-strip-options="side: 'right'">
+                    <img src="images/l2.jpg" />
                   </a>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/l3.jpg" />
+              <!-- <div class="col-md-6">
+                  <a href="images/l3.jpg" class="strip" data-strip-caption="KOKO Club" data-strip-group="london" data-strip-options="side: 'right'">
+                    <img src="images/l3.jpg" />
                   </a>
+              </div> -->
+              <div class="col-md-6 text">
+                <h1 class="text-left">Please mind the gap</h1>
+                <p class="lead text-left">
+                  At the moment I live in London to study and doing an internship. </br> </br>
+                  London is the city in the world with the most cultural variety ever and you can really feel it.
+                  Just go to Bricklane Market on a Sunday to taste something to eat from almost every country in the world.
+                  The city is so busy and vibrant. I really could image to life here more then a few months.
+                </p>
               </div>
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/l4.jpg" />
-                  </a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/l15.jpg" />
-                  </a>
-              </div>
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/l6.jpg" />
+                  <a href="images/l4.jpg" class="strip" data-strip-caption="Greenwich University" data-strip-group="london" data-strip-options="side: 'right'">
+                    <img src="images/l4.jpg" />
                   </a>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/l7.jpg" />
+                  <a href="images/l15.jpg" class="strip" data-strip-caption="St. Pauls" data-strip-group="london" data-strip-options="side: 'right'">
+                    <img src="images/l15.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/l8.jpg" />
-                  </a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/l9.jpg" />
-                  </a>
-              </div>
-              <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/l10.jpg" />
+                  <a href="images/l6.jpg" class="strip" data-strip-caption="Borough Market" data-strip-group="london" data-strip-options="side: 'right'">
+                    <img src="images/l6.jpg" />
                   </a>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/l11.jpg" />
+                  <a href="images/l7.jpg" class="strip" data-strip-caption="Shakespeare's Globe" data-strip-group="london" data-strip-options="side: 'right'">
+                    <img src="images/l7.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/l12.jpg" />
+                  <a href="images/l8.jpg" class="strip" data-strip-caption="Art at covent garden" data-strip-group="london" data-strip-options="side: 'right'">
+                    <img src="images/l8.jpg" />
+                  </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                  <a href="images/l9.jpg" class="strip" data-strip-caption="Inside the globe" data-strip-group="london" data-strip-options="side: 'right'">
+                    <img src="images/l9.jpg" />
+                  </a>
+              </div>
+              <div class="col-md-6">
+                  <a href="images/l10.jpg" class="strip" data-strip-caption="Hyde Park" data-strip-group="london" data-strip-options="side: 'right'">
+                    <img src="images/l10.jpg" />
+                  </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="span6">
+                <div class="flex-video widescreen">
+                  <iframe allowfullscreen="" src="http://player.vimeo.com/video/74145280" frameborder="0" width="100%" height="100%"></iframe>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                  <a href="images/l11.jpg" class="strip" data-strip-caption="Thames life" data-strip-group="london" data-strip-options="side: 'right'">
+                    <img src="images/l11.jpg" />
+                  </a>
+              </div>
+              <div class="col-md-6">
+                  <a href="images/l12.jpg" class="strip" data-strip-caption="Shoreditch cocktail bar" data-strip-group="london" data-strip-options="side: 'right'">
+                    <img src="images/l12.jpg" />
                   </a>
               </div>
             </div>
             <div class="row last">
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/l13.jpg" />
+                  <a href="images/l13.jpg" class="strip" data-strip-caption="Fruit and vegetables" data-strip-group="london" data-strip-options="side: 'right'">
+                    <img src="images/l13.jpg" />
                   </a>
               </div>
               <div class="col-md-6">
-                  <a href="">
-                    <img src="images/places/l14.jpg" />
+                  <a href="images/l14.jpg" class="strip" data-strip-caption="Remembrance Fireworks" data-strip-group="london" data-strip-options="side: 'right'">
+                    <img src="images/l14.jpg" />
                   </a>
               </div>
             </div>
@@ -890,8 +978,8 @@
               <div class="col-md-12">
                 <figure class="effect-julia">
                   <div>
-                    <a href="images/1.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork" data-strip-options="side: 'top'">
-                      <img src="images/places/ska3.jpg" />
+                    <a href="images/ska3.jpg" class="strip" data-strip-caption="Lake in Sweden" data-strip-group="scandinavia" data-strip-options="side: 'left'">
+                      <img src="images/ska3.jpg" />
                     </a>
                   </div>
                   <figcaption>
@@ -902,35 +990,40 @@
             </div>
             <div class="row">
               <div class="col-md-6">
-                <h1 class="text-left">The city that never sleeps</h1>
-                <p class="lead text-left">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, et dolore maga. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p>
+                <a href="images/ska1.jpg" class="strip" data-strip-caption="Stone art" data-strip-group="scandinavia" data-strip-options="side: 'left'">
+                  <img src="images/ska1.jpg" />
+                </a>
               </div>
-              <div class="col-md-6 map-6">
-
+              <!-- <div class="col-md-6">
+                <a href="images/ska2.jpg" class="strip" data-strip-caption="Scandinavian river" data-strip-group="scandinavia" data-strip-options="side: 'left'">
+                  <img src="images/ska2.jpg" />
+                </a>
+              </div> -->
+              <div class="col-md-6 text">
+                <h1 class="text-left">Cold but beautiful</h1>
+                <p class="lead text-left">
+                  The destination of one of my next trips will be definitely a Scandinavian country. I would love to visit Stockholm or Oslo, but also going to a Fjord on a boat. <br/><br/>
+                  A little dream is to go camping there, just fishing your lunch from a lake and relax.
+                </p>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/ska1.jpg" />
+                <a href="images/ska5.jpg" class="strip" data-strip-caption="Boat trip in Norway" data-strip-group="scandinavia" data-strip-options="side: 'left'">
+                  <img src="images/ska5.jpg" />
                 </a>
               </div>
               <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/ska2.jpg" />
+                <a href="images/ska4.jpg" class="strip" data-strip-caption="Camping in Finland" data-strip-group="scandinavia" data-strip-options="side: 'left'">
+                  <img src="images/ska4.jpg" />
                 </a>
               </div>
             </div>
             <div class="row last">
-              <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/ska5.jpg" />
-                </a>
-              </div>
-              <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/ska4.jpg" />
-                </a>
+              <div class="span6">
+                <div class="flex-video widescreen scand">
+                  <iframe allowfullscreen="" src="http://player.vimeo.com/video/107231457" frameborder="0" width="100%" height="100%"></iframe>
+                </div>
               </div>
             </div>
             <!-- South America -->
@@ -938,8 +1031,8 @@
               <div class="col-md-12">
                 <figure class="effect-julia">
                   <div>
-                    <a href="images/1.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork" data-strip-options="side: 'top'">
-                      <img src="images/places/sa3.jpg" />
+                    <a href="images/sa3.jpg" class="strip" data-strip-caption="Amazonas Waterfall" data-strip-group="southamerica" data-strip-options="side: 'right'">
+                      <img src="images/sa3.jpg" />
                     </a>
                   </div>
                   <figcaption>
@@ -948,60 +1041,62 @@
                 </figure>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <h1 class="text-left">The city that never sleeps</h1>
-                <p class="lead text-left">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, et dolore maga. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p>
-              </div>
-              <div class="col-md-6 map-6">
 
-              </div>
-            </div>
+
             <div class="row">
               <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/sa1.jpg" />
+                <a href="images/sa1.jpg" class="strip" data-strip-caption="Desert" data-strip-group="southamerica" data-strip-options="side: 'right'">
+                  <img src="images/sa1.jpg" />
                 </a>
               </div>
               <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/sa7.jpg" />
-                </a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/sa5.jpg" />
-                </a>
-              </div>
-              <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/sa4.jpg" />
+                <a href="images/sa7.jpg" class="strip" data-strip-caption="Rio de Janeiro" data-strip-group="southamerica" data-strip-options="side: 'right'">
+                  <img src="images/sa7.jpg" />
                 </a>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/sa6.jpg" />
+                <a href="images/sa5.jpg" class="strip" data-strip-caption="Rio de Janeiro Beach" data-strip-group="southamerica" data-strip-options="side: 'right'">
+                  <img src="images/sa5.jpg" />
                 </a>
               </div>
               <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/sa9.jpg" />
+                <a href="images/sa4.jpg" class="strip" data-strip-caption="Desert life" data-strip-group="southamerica" data-strip-options="side: 'right'">
+                  <img src="images/sa4.jpg" />
+                </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="span6">
+                <div class="flex-video widescreen">
+                  <iframe allowfullscreen="" src="http://player.vimeo.com/video/27567215" frameborder="0" width="100%" height="100%"></iframe>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <a href="images/sa6.jpg" class="strip" data-strip-caption="Peru" data-strip-group="southamerica" data-strip-options="side: 'right'">
+                  <img src="images/sa6.jpg" />
+                </a>
+              </div>
+              <div class="col-md-6">
+                <a href="images/sa9.jpg" class="strip" data-strip-caption="Machu Picchu" data-strip-group="southamerica" data-strip-options="side: 'right'">
+                  <img src="images/sa9.jpg" />
                 </a>
               </div>
             </div>
             <div class="row last">
-              <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/sa8.jpg" />
-                </a>
+              <div class="col-md-6 text">
+                <h1 class="text-left">Backpacking in South America</h1>
+                <p class="lead text-left">
+                  I would love to backpack around the stunning countries Bolivia, Peru, Colombia, Ecuador and Paraguay. Just take the backpack and travel for a few weeks around.
+                  Visiting Machu Pichu or going maybe to Brazil as well. We will see.
+                </p>
               </div>
               <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/sa2.jpg" />
+                <a href="images/sa2.jpg" class="strip" data-strip-caption="Old Railway" data-strip-group="southamerica" data-strip-options="side: 'right'">
+                  <img src="images/sa2.jpg" />
                 </a>
               </div>
             </div>
@@ -1010,8 +1105,8 @@
               <div class="col-md-12">
                 <figure class="effect-julia">
                   <div>
-                    <a href="images/1.jpg" class="strip" data-strip-caption="Caption below the image" data-strip-group="newyork" data-strip-options="side: 'top'">
-                      <img src="images/places/n4.jpg" />
+                    <a href="images/n4.jpg" class="strip" data-strip-caption="Beautiful Lakeside" data-strip-group="newzealand" data-strip-options="side: 'left'">
+                      <img src="images/n4.jpg" />
                     </a>
                   </div>
                   <figcaption>
@@ -1022,54 +1117,146 @@
             </div>
             <div class="row">
               <div class="col-md-6">
-                <h1 class="text-left">The city that never sleeps</h1>
-                <p class="lead text-left">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, et dolore maga. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p>
+                <a href="images/n1.jpg" class="strip" data-strip-caption="Bridge to the adventure" data-strip-group="newzealand" data-strip-options="side: 'left'">
+                  <img src="images/n1.jpg" />
+                </a>
               </div>
-              <div class="col-md-6 map-6">
 
+              <div class="col-md-6 text">
+                <h1 class="text-left">Middle-earth</h1>
+                <p class="lead text-left">
+                  My last dream destination is New Zealand. After watching the Lord of the rings and the Hobbit movies, where all the country footage was made in New Zealand. I have to go there and visit the great movie locations.
+                  The countryside is so beautiful, with lots of mountain chains, lakes and rivers everywhere.
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="span6">
+                <div class="flex-video widescreen">
+                  <iframe allowfullscreen="" src="http://player.vimeo.com/video/100632505" frameborder="0" width="100%" height="100%"></iframe>
+                </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/n1.jpg" />
+                <a href="images/n5.jpg" class="strip" data-strip-caption="Mountains" data-strip-group="newzealand" data-strip-options="side: 'left'">
+                  <img src="images/n5.jpg" />
                 </a>
               </div>
               <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/n2.jpg" />
-                </a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/n5.jpg" />
-                </a>
-              </div>
-              <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/n3.jpg" />
+                <a href="images/n3.jpg" class="strip" data-strip-caption="Green countryside" data-strip-group="newzealand" data-strip-options="side: 'left'">
+                  <img src="images/n3.jpg" />
                 </a>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                <a href="">
-                  <img src="images/places/n6.jpg" />
+                <a href="images/n6.jpg" class="strip" data-strip-caption="Green cave" data-strip-group="newzealand" data-strip-options="side: 'left'">
+                  <img src="images/n6.jpg" />
+                </a>
+              </div>
+              <div class="col-md-6">
+                <a href="images/n2.jpg" class="strip" data-strip-caption="Middle-earth" data-strip-group="newzealand" data-strip-options="side: 'left'">
+                  <img src="images/n2.jpg" />
                 </a>
               </div>
             </div>
           </section>
+          <!-- End of content-->
+          <section class="row" id="list">
+            <div class="row" >
+              <div class="col-md-12">
+                <h1>List of references</h1>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <p class="lead text-left">
+                  <h2>Images</h2>
+                  <strong>Header Image</strong><br/>
+                  Hawaii Surfing - Alexander Hipp<br/><br/>
+
+                  <strong>Past</strong><br/>
+                  New York - Alexander Hipp, Lothar Hipp<br/>
+                  Corsica - Alexander Hipp, Sindi Dressnandt<br/>
+                  Hawaii - Alexander Hipp<br/>
+                  Boston - Alexander Hipp<br/>
+                  South Germany - Alexander Hipp<br/>
+                  Rome - Alexander Hipp, Julian Hipp<br/>
+                  Canary Islands - Alexander Hipp, Lothar Hipp<br/>
+                  Shanghai - Alexander Hipp<br/><br/>
+
+                  <strong>Present</strong><br/>
+                  London - Alexander Hipp<br/><br/>
+
+                  <strong>Future</strong><br/>
+                  Scandinavia - Nicolas Haydt<br/>
+                  South America - Dajana Lude<br/>
+                  New Zealand - Nicolas Haydt<br/>
+
+                </p>
+              </div>
+              <div class="col-md-6">
+                <p class="lead text-left">
+                  <h2>Vimeo videos</h2>
+                  <strong>Past</strong><br/>
+                  New York - http://vimeo.com/68384616<br/>
+                  Corsica - http://vimeo.com/56248257<br/>
+                  Hawaii - http://vimeo.com/62242433<br/>
+                  Boston - http://vimeo.com/99591060<br/>
+                  South Germany - http://vimeo.com/201310667508<br/>
+                  Rome - http://vimeo.com/83590373<br/>
+                  Canary Islands - http://vimeo.com/25687790<br/>
+                  Shanghai - http://vimeo.com/63635193<br/><br/>
+
+                  <strong>Present</strong><br/>
+                  London - http://vimeo.com/74145280<br/><br/>
+
+                  <strong>Future</strong><br/>
+                  Scandinavia - http://vimeo.com/107231457<br/>
+                  South America - http://vimeo.com/27567215<br/>
+                  New Zealand - http://vimeo.com/100632505<br/>
+
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <p class="lead text-left">
+                  <h2>Text</h2>
+                  <strong>Past, Present and Future</strong><br/>
+                  Alexander Hipp<br/></br>
+
+                  <h2>Development</h2>
+                  <strong>Webdesign and Coding</strong><br/>
+                  Alexander Hipp<br/><br/>
+                </p>
+              </div>
+              <div class="col-md-6">
+                <p class="lead text-left">
+                  <h2>Frameworks</h2>
+                  <strong>Javascript</strong><br/>
+
+                  Sticky – Fixed Menu - http://leafo.net/sticky-kit/<br/>
+                  Hover Effect Images - http://tympanus.net/codrops/2014/06/19/ideas-for-subtle-hover-effects/<br/>
+                  Scrollspy - http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-scrollspy.php<br/>
+                  Gallery Lightbox Strip  - http://www.stripjs.com/<br/>
+                  Type.js - https://github.com/mattboldt/typed.js/blob/master/README.md<br/>
+                  Mapael - http://www.neveldo.fr/mapael/<br/><br/>
+
+                  <strong>Layout</strong><br/>
+                  Bootstrap - http://getbootstrap.com/<br/>
+
+                </p>
+              </div>
+            </div>
         </div>
       </div>
     </div>
 
 
 
-    <!-- Strip Gallery -->
-    <script type="text/javascript" src="js/strip.pkgd.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/strip.css"/>
+
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
