@@ -64,6 +64,12 @@ section {margin-bottom: 100px;}
 .block {position: absolute;width: 430px;}
 .block img {width: 100%;}
 
+#sidemenu-top a i:before,
+#sidemenu-top a i,
+#sidemenu-top a,
+#sidemenu-top {
+	background:transparent!important;
+}
 
 #content-right [class*="span"] {padding: 0px;}
 
@@ -361,4 +367,30 @@ h1 {margin-top: 0px;font-weight: 100;}
 	.sticky-wrapper {
 		display:none;
 	}
+}
+
+
+
+
+/* Essay */
+
+.essay-page .masthead, .essay-page .mastfoot, .essay-page .cover-container {
+	padding-bottom: 120px;
+}
+
+.essay-page .site-wrapper {
+	height: 60px!important;
+	min-height: 0px!important;
+}
+
+.essay-page #content-right a {
+	color:#111;
+	text-decoration:underline;
+}
+
+.normal-list, .normal-list li {
+	text-align:left;
+	list-style:circle;
+	margin-left:10px;
+	padding-left:0px;
 }

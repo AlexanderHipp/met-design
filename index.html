@@ -70,12 +70,13 @@
     function foo(){
       $(".container").addClass("show");
 
-      // Set height of the window, and scroll after type function, to it
-      var scrollHeight = $(window).height();
-      jQuery('body,html').animate({
-          scrollTop: scrollHeight
-      }, 2000);
-
+      if (window.pageYOffset==0) {
+        // Set height of the window, and scroll after type function, to it
+        var scrollHeight = $(window).height();
+        jQuery('body,html').animate({
+            scrollTop: scrollHeight
+        }, 2000);
+      }
     }
 
 
@@ -128,7 +129,7 @@
               <h3 class="masthead-brand"><a href="#">Alexander's Travels</a></h3>
               <nav>
                 <ul class="nav masthead-nav nav-collapsable">
-                  <li class="essay"><a href="/essay" title="Past">Essay</a>
+                  <li class="essay"><a href="essay.html" title="Past">Essay</a>
                   <li class="hideit"><a href="#map" title="Past">Map</a>
                   <li><a href="#past" title="Past">Past</a>
                     <ul>
